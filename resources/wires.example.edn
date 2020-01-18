@@ -1,0 +1,3 @@
+{:wires-http-port 3000
+ :datomic-db      #profile {:dev  "datomic:mem://wires/dev"
+                            :prod "datomic:mem://wire/prod"}}

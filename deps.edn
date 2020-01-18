@@ -1,14 +1,16 @@
-{:paths   ["src/main" "resources"]
+{:paths     ["src/main" "resources"]
  :mvn/repos {"my.datomic.com" {:url "https://my.datomic.com/repo"}}
- :deps    {org.clojure/clojure     {:mvn/version "1.10.1"}
-           com.fulcrologic/fulcro {:mvn/version "3.0.0"}
-           com.wsscode/pathom     {:mvn/version "2.2.15"}
-           com.taoensso/timbre    {:mvn/version "4.10.0"}
-           ring/ring-core         {:mvn/version "1.6.3"}
-           http-kit               {:mvn/version "2.3.0"}
-           com.datomic/datomic-pro {:mvn/version "0.9.6024"}}
- :aliases {:dev {:extra-paths ["src/dev"]
-                 :extra-deps {org.clojure/clojurescript {:mvn/version "1.10.520"}
-                              thheller/shadow-cljs      {:mvn/version "2.8.52"}
-                              binaryage/devtools        {:mvn/version "0.9.10"}
-                              org.clojure/tools.namespace {:mvn/version "0.2.11"}}}}}
+ :deps      {org.clojure/clojure     {:mvn/version "1.10.1"}
+             com.fulcrologic/fulcro  {:mvn/version "3.0.0"}
+             com.wsscode/pathom      {:mvn/version "2.2.15"}
+             com.taoensso/timbre     {:mvn/version "4.10.0"}
+             ring/ring-core          {:mvn/version "1.6.3"}
+             http-kit                {:mvn/version "2.3.0"}
+             com.datomic/datomic-pro {:mvn/version "0.9.6024"}
+             aero                    {:mvn/version "1.1.4"}
+             org.danielsz/system     {:mvn/version "0.4.4"}}
+ :aliases   {:dev {:extra-paths ["src/dev"]
+                   :extra-deps  {org.clojure/clojurescript   {:mvn/version "1.10.520"}
+                                 thheller/shadow-cljs        {:mvn/version "2.8.52"}
+                                 binaryage/devtools          {:mvn/version "0.9.10"}
+                                 org.clojure/tools.namespace {:mvn/version "0.2.11"}}}}}
