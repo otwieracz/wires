@@ -3,3 +3,5 @@
 /.shadow-cljs/
 /node_modules/
 /resources/public/js/
+/resources/wires.edn
+/wires-dev-transactor.properties
