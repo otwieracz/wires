@@ -1,9 +1,9 @@
 (ns user
   (:require [clojure.tools.namespace.repl :refer [set-refresh-dirs refresh]]
+            [clojure.tools.trace :as trace]
             [system.repl :refer [system set-init! start stop reset]]
             [shadow.cljs.devtools.api :refer [repl]]
             [datomic.api :as datomic]
-            [datomic.pull :refer [pull]]
             [wires.systems :refer [dev-system]]
             [wires.datomic :as wd]))
 
@@ -19,8 +19,6 @@
 
 (defn reset-and-load
   []
-  (do
-    (reset)
-    (wd/load-schema (conn))
-    (wd/load-initial-data (conn))
-    true))
+  (reset)
+  (wd/load-schema (conn))
+  (wd/load-initial-data (conn)))

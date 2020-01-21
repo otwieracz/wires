@@ -6,17 +6,19 @@
             [wires.mutations :as mutations]))
 
 (defn pathom-parser
-  []
+  [db]
   (p/parser {::p/env     {::p/reader                 [p/map-reader
                                                       pc/reader2
                                                       pc/ident-reader
                                                       pc/index-reader]
-                          ::pc/mutation-join-globals [:tempids]}
+                          ::pc/mutation-join-globals [:tempids]
+                          :db                        db}
              ::p/mutate  pc/mutate
              ::p/plugins [(pc/connect-plugin {::pc/register [resolvers/resolvers
                                                              mutations/mutations]})
                           p/error-handler-plugin]}))
 
-(defn api-parser [query]
-  (log/info "Process" query)
-  ((pathom-parser) {} query))
+(defn make-api-parser [db]
+  (fn [query]
+    (log/info "Process" query)
+    ((pathom-parser db) {} query)))

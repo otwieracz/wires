@@ -1,6 +1,7 @@
 {:paths     ["src/main" "resources"]
  :mvn/repos {"my.datomic.com" {:url "https://my.datomic.com/repo"}}
  :deps      {org.clojure/clojure     {:mvn/version "1.10.1"}
+             org.clojure/tools.trace {:mvn/version "0.7.10"}
              com.fulcrologic/fulcro  {:mvn/version "3.0.0"}
              com.wsscode/pathom      {:mvn/version "2.2.15"}
              com.taoensso/timbre     {:mvn/version "4.10.0"}

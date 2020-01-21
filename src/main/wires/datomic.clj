@@ -63,11 +63,13 @@
 
 (defn load-schema
   [conn]
-  (map (fn [schema] @(datomic/transact conn schema))
-       [terminal-schema wire-schema]))
+  (doall
+    (map (fn [schema] @(datomic/transact conn schema))
+         [terminal-schema wire-schema])))
 
 (defn load-initial-data
   [conn]
-  (map (fn [data] @(datomic/transact conn data))
-       [terminals-data wires-data]))
+  (doall
+    (map (fn [data] @(datomic/transact conn data))
+         [terminals-data wires-data])))
 
