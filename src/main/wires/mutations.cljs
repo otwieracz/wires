@@ -18,12 +18,12 @@
 (defmutation add-wire
   [{wire-list-id :wire-list/id
     wire-id :wire/id}]
-  (action [{:keys [state]}]
-          (swap! state
-                 (fn [s]
-                   (-> s
-                       (create-wire wire-id "Vcc" "yellow")
-                       (data-targeting/integrate-ident* [:wire/id wire-id] :append [:wire-list/id wire-list-id :wire-list/wires])))))
+  #_(action [{:keys [state]}]
+            (swap! state
+                   (fn [s]
+                     (-> s
+                         (create-wire wire-id "Vcc" "yellow")
+                         (data-targeting/integrate-ident* [:wire/id wire-id] :append [:wire-list/id wire-list-id :wire-list/wires])))))
   (remote [_env] true)
   (ok-action [{:keys [app]}]
              (df/load! app [:wire/id wire-id] (comp/registry-key->class :wires.ui/Wire))

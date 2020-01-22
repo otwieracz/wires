@@ -14,7 +14,7 @@
 
 (set-init! #'dev-system)
 
-(defn conn [] (:conn (:datomic-db system)))
+(defn conn [] (:conn (:datomic system)))
 (defn db [] (datomic/db (conn)))
 
 (defn reset-and-load

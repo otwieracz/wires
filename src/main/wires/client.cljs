@@ -10,6 +10,6 @@
   []
   (app/mount! application/APP ui/Root "app")
   (js/console.log "loading")
-  (df/load! application/APP :wires ui/WireList)
+  (df/load! application/APP :wires ui/Wire)
   (js/console.log "hi there"))
 

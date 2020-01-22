@@ -35,9 +35,11 @@
 
 (def ui-wire (comp/factory Wire {:keyfn :wire/id}))
 
-(defsc WireList [_this {:wire-list/keys [wires]}]
-  {:query [:wire-list/id {:wire-list/wires (comp/get-query Wire)}]
-   :ident :wire-list/id}
+(defsc WireList [_this {:wires-list/keys [wires]}]
+  {:query [{:wires-list/wires (comp/get-query Wire)}]
+   :ident (fn [] [:wire-list/id :singleton])
+   }
+  (println (str "Wires on WireList are: " wires))
   (ui-table {:striped true :hover true}
             (thead
               (tr
@@ -49,16 +51,16 @@
             (tbody
               (map ui-wire wires))))
 
-(def ui-wire-list (comp/factory WireList {:keyfn :wire-list/id}))
+(def ui-wire-list (comp/factory WireList #_{:keyfn :wire-list/id}))
 
 (defsc Root [this {:keys [wires]}]
-  {:query         [{:wires (comp/get-query WireList)}]
+  {:query         [{:wires (comp/get-query Wire)}]
    :initial-state {}}
-  (println (str "Wires are: " wires))
   (div
     (when wires
+      (println (str "Wires on Wires are: " wires))
       (div
-        (ui-wire-list wires)
+        (ui-wire-list {:wires-list/wires wires})
         (ui-button {:onClick (fn [] (comp/transact! this [(mutations/add-wire {:wire-list/id :my-wires :wire/id 2})]))} "foo")))))
 
 

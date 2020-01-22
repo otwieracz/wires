@@ -14,15 +14,16 @@
      :headers {"Content-Type" "text/plain"}
      :body    "Not Found"}))
 
-(defrecord FulcroHandler [db]
+(defrecord FulcroHandler [datomic]
   component/Lifecycle
   (start [component]
-    (let [handler (fn [] (-> not-found-handler
-                             (fulcro-server/wrap-api {:uri "/api" :parser (make-api-parser db)})
-                             (fulcro-server/wrap-transit-params)
-                             (fulcro-server/wrap-transit-response)
-                             (wrap-resource "public")
-                             wrap-content-type))]
+    (let [handler (-> not-found-handler
+                      (fulcro-server/wrap-api {:uri "/api" :parser (make-api-parser datomic)})
+                      (fulcro-server/wrap-transit-params)
+                      (fulcro-server/wrap-transit-response)
+                      (wrap-resource "public")
+                      wrap-content-type)
+          #_(fn [])]
       (assoc component :fulcro-handler handler)))
   (stop [component]
     (dissoc component :fulcro-handler)))
@@ -32,7 +33,7 @@
 (defrecord FulcroServer [options server handler]
   component/Lifecycle
   (start [component]
-    (let [server (run-server ((:fulcro-handler handler)) options)]
+    (let [server (run-server (:fulcro-handler handler) options)]
       (assoc component :server server)))
   (stop [component]
     (when server
