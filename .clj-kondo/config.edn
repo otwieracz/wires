@@ -1,0 +1,5 @@
+{:lint-as {com.wsscode.pathom.connect/defmutation       clojure.core/defn
+           com.wsscode.pathom.connect/defresolver       clojure.core/defn
+           com.fulcrologic.fulcro.components/defsc      clojure.core/defn
+           com.fulcrologic.fulcro.mutations/defmutation clojure.core/defn}
+ :linters {:unresolved-symbol {:exclude [(com.fulcrologic.fulcro.mutations/defmutation)]}}}

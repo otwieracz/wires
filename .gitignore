@@ -1,6 +1,7 @@
 /.idea/
 /.cpcache/
 /.shadow-cljs/
+/.clj-kondo/.cache/
 /node_modules/
 /resources/public/js/
 /resources/wires.edn

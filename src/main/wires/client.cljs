@@ -1,15 +1,16 @@
 (ns wires.client
   (:require [wires.application :as application]
-            [wires.ui :as ui]
+            [wires.ui.root :as root]
+            [wires.ui.wires :as ui.wires]
+            [wires.ui.connectors :as ui.connectors]
             [com.fulcrologic.fulcro.application :as app]
-            [com.fulcrologic.fulcro.components :as comp :refer [defsc]]
-            [com.fulcrologic.fulcro.dom :as dom]
             [com.fulcrologic.fulcro.data-fetch :as df]))
 
 (defn ^:export init
   []
-  (app/mount! application/APP ui/Root "app")
+  (app/mount! application/APP root/Root "app")
   (js/console.log "loading")
-  (df/load! application/APP :wires ui/Wire)
+  (df/load! application/APP :wires ui.wires/Wire)
+  (df/load! application/APP :connectors ui.connectors/Connector)
   (js/console.log "hi there"))
 
