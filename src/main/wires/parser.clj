@@ -5,9 +5,6 @@
             [wires.resolvers :as resolvers]
             [wires.mutations :as mutations]))
 
-(def resgister-plugins [resolvers/resolvers
-                        mutations/mutations])
-
 (defn make-pathom-parser
   [datomic]
   (p/parser {::p/env     {::p/reader                 [p/map-reader
@@ -18,11 +15,12 @@
                           :datomic                   datomic
                           }
              ::p/mutate  pc/mutate
-             ::p/plugins [(pc/connect-plugin {::pc/register resgister-plugins})
+             ::p/plugins [(pc/connect-plugin {::pc/register [resolvers/resolvers
+                                                             mutations/mutations]})
                           p/error-handler-plugin]}))
 
 (defn make-api-parser [datomic]
-  (let [parser (make-pathom-parser datomic)]
-    (fn [query]
+  (fn [query]
+    (let [parser (#'make-pathom-parser datomic)]
       (log/info "Processing query: " query)
       (parser {} query))))

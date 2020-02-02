@@ -5,7 +5,7 @@
 
 (defmutation add-connector [{:keys [datomic]} {:connector/keys [kind label pins]}]
   {::pc/sym `add-connector}
-  (log/info "X Adding new connector" label "of type" kind "with" pins "pins")
+  (log/info "Adding new connector" label "of type" kind "with" pins "pins")
   (let [{:keys [db-after tempids]} @(datomic/transact (:conn datomic)
                                                       [{:db/id           "new-connector"
                                                         :connector/id    (datomic/squuid)
