@@ -11,6 +11,6 @@
   (app/mount! application/APP root/Root "app")
   (js/console.log "loading")
   (df/load! application/APP :wires ui.wires/Wire)
-  (df/load! application/APP :connectors ui.connectors/Connector)
+  (df/load! application/APP :connectors ui.connectors/Connector #_{:target [:connectors-tab/id :singleton :connectors]})
   (js/console.log "hi there"))
 

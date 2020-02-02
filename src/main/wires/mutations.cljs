@@ -1,7 +1,5 @@
-(ns wires.ui.mutations
-  (:require [com.fulcrologic.fulcro.mutations :as m :refer [defmutation]]
-            [com.fulcrologic.fulcro.algorithms.merge :as merge]
-            [com.fulcrologic.fulcro.algorithms.data-targeting :as data-targeting]
+(ns wires.mutations
+  (:require [com.fulcrologic.fulcro.mutations :as m :refer [defmutation returning]]
             [com.fulcrologic.fulcro.data-fetch :as df]
             [com.fulcrologic.fulcro.components :as comp]))
 
@@ -32,5 +30,16 @@
 (defmutation change-active-tab
   [{active-tab :active-tab}]
   (action [{:keys [state]}]
-            (swap! state
-                   #(assoc % :active-tab active-tab))))
+          (swap! state
+                 #(assoc % :active-tab active-tab))))
+
+(defmutation change-add-connection-modal-state
+  [{:keys [modal-id new-state]}]
+  (action [{:keys [state]}]
+          (swap! state
+                 #(assoc-in % [:add-connector-modal/id modal-id :add-connector-modal/show] new-state))))
+
+(defmutation add-connector
+  [{:connector/keys [label kind pins]}]
+  (remote [env] 
+          (returning env (comp/registry-key->class :wires.ui.connectors/Connector))))
