@@ -20,4 +20,5 @@
                     '[:connector/id :connector/kind :connector/label :connector/pins]
                     (get tempids "new-connector"))))
 
-(def mutations [add-connector])
+(defn mutations []
+  [add-connector])

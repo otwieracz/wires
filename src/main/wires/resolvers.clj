@@ -37,4 +37,5 @@
                          (datomic/db (:conn datomic)))]
     {:wires (map first wires)}))
 
-(def resolvers [connector-resolver connectors-resolver terminal-resolver wire-resolver wires-resolver])
+(defn resolvers []
+  [connector-resolver connectors-resolver terminal-resolver wire-resolver wires-resolver])

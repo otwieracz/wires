@@ -12,15 +12,14 @@
                                                       pc/ident-reader
                                                       pc/index-reader]
                           ::pc/mutation-join-globals [:tempids]
-                          :datomic                   datomic
-                          }
+                          :datomic                   datomic}
              ::p/mutate  pc/mutate
-             ::p/plugins [(pc/connect-plugin {::pc/register [resolvers/resolvers
-                                                             mutations/mutations]})
+             ::p/plugins [(pc/connect-plugin {::pc/register [(resolvers/resolvers)
+                                                             (mutations/mutations)]})
                           p/error-handler-plugin]}))
 
 (defn make-api-parser [datomic]
   (fn [query]
-    (let [parser (#'make-pathom-parser datomic)]
+    (let [parser (make-pathom-parser datomic)]
       (log/info "Processing query: " query)
       (parser {} query))))

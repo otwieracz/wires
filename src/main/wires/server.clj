@@ -23,7 +23,7 @@
                       (fulcro-server/wrap-transit-params)
                       (fulcro-server/wrap-transit-response)
                       (wrap-resource "public")
-                      #_wrap-reload
+                      wrap-reload
                       wrap-content-type)
           #_(fn [])]
       (assoc component :fulcro-handler handler)))
