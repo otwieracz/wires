@@ -12,7 +12,7 @@
   [{:keys [modal-id new-state]}]
   (action [{:keys [state]}]
           (swap! state #(-> %
-                            (assoc-in [:add-connector-modal/id modal-id :add-connector-modal/show] new-state)
+                            (assoc-in [:add-connector-modal/id modal-id :add-connector-modal/open] new-state)
                             ;; clean state
                             (update-in [:add-connector-modal/id modal-id] dissoc :add-connector-modal/label)
                             (update-in [:add-connector-modal/id modal-id] dissoc :add-connector-modal/kind)
@@ -23,9 +23,9 @@
   [{:add-connector-modal/keys [id field value]}]
   (action [{:keys [state]}]
           (let [[property-key coerce-fn] (case field
-                                           "label" [:add-connector-modal/label str]
-                                           "kind" [:add-connector-modal/kind str]
-                                           "pins" [:add-connector-modal/pins js/parseInt])]
+                                           :label [:add-connector-modal/label str]
+                                           :kind [:add-connector-modal/kind str]
+                                           :pins [:add-connector-modal/pins js/parseInt])]
             (swap! state
                    #(assoc-in % [:add-connector-modal/id id property-key] (coerce-fn value))))))
 
