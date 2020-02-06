@@ -6,7 +6,8 @@
                                        DropdownButton Dropdown.Item 
                                        ButtonToolbar 
                                        Navbar Navbar.Brand Navbar.Collapse Nav Nav.Item Nav.Link
-                                       Modal Modal.Dialog Modal.Header Modal.Title Modal.Body Modal.Footer]]))
+                                       Modal Modal.Dialog Modal.Header Modal.Title Modal.Body Modal.Footer
+                                       Form Form.Group Form.Label Form.Control Form.Text]]))
 
 (def ui-button (interop/react-factory Button))
 (def ui-button-toolbar (interop/react-factory ButtonToolbar))
@@ -29,3 +30,9 @@
 (def ui-modal-title (interop/react-factory Modal.Title))
 (def ui-modal-body (interop/react-factory Modal.Body))
 (def ui-modal-footer (interop/react-factory Modal.Footer))
+
+(def ui-form (interop/react-factory Form))
+(def ui-form-group (interop/react-factory Form.Group))
+(def ui-form-label (interop/react-factory Form.Label))
+(def ui-form-control (interop/react-factory Form.Control))
+(def ui-form-text (interop/react-factory Form.Text))

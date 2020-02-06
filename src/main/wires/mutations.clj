@@ -16,7 +16,7 @@
                                                  '[:connector/id :connector/kind :connector/label :connector/pins]
                                                  (get tempids "new-connector"))]
     (log/info "Added foo" added)
-    #_(datomic/pull db-after
+    (datomic/pull db-after
                     '[:connector/id :connector/kind :connector/label :connector/pins]
                     (get tempids "new-connector"))))
 

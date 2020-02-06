@@ -3,7 +3,6 @@
             [com.stuartsierra.component :as component]
             [ring.middleware.content-type :refer [wrap-content-type]]
             [ring.middleware.resource :refer [wrap-resource]]
-            [ring.middleware.reload :refer [wrap-reload]]
             [wires.parser :refer [make-api-parser]]
             [org.httpkit.server :refer [run-server]]
             [system.components.http-kit :refer [Options]]
@@ -23,7 +22,6 @@
                       (fulcro-server/wrap-transit-params)
                       (fulcro-server/wrap-transit-response)
                       (wrap-resource "public")
-                      wrap-reload
                       wrap-content-type)
           #_(fn [])]
       (assoc component :fulcro-handler handler)))

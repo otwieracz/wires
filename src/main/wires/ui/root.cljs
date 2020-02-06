@@ -1,5 +1,6 @@
 (ns wires.ui.root
   (:require [wires.mutations :as mutations]
+            [wires.ui.mutations :as ui-mutations]
             [wires.ui.wires :as ui.wires]
             [wires.ui.connectors :as ui.connectors]
             [wires.ui.bootstrap :refer [ui-navbar ui-navbar-brand ui-nav ui-nav-item ui-nav-link ui-button]]
@@ -18,7 +19,7 @@
                :expand "lg"}
               (ui-navbar-brand {} "Wires")
               (ui-nav {:activeKey active-tab
-                       :onSelect  #(comp/transact! this [(mutations/change-active-tab {:active-tab %})])}
+                       :onSelect  #(comp/transact! this [(ui-mutations/change-active-tab {:active-tab %})])}
                       (ui-nav-item {} (ui-nav-link {:eventKey "wires"} "Wires"))
                       (ui-nav-item {} (ui-nav-link {:eventKey "connectors"} "Connectors"))))
    (case active-tab

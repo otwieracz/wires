@@ -20,6 +20,8 @@
 
 (defn make-api-parser [datomic]
   (fn [query]
+    ;; it's important to make new parser every single query to reload
+    ;; changes dynamicly when mutations 
     (let [parser (make-pathom-parser datomic)]
       (log/info "Processing query: " query)
       (parser {} query))))
